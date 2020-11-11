@@ -1,0 +1,15 @@
+#javaEE Spring基于Annotation的装配
+
+@Component ：可以使用此注解描述Spring中的Bean，但它是一个泛化的概念，仅仅表示一个组件 (Bean) ，并且可以作用在任何层次。使用时只需将该注解标注在相应类上即可。
+
+@Repository：用于将数据访问层 (DAO 层 ) 的类标识为Spring中的Bean，其功能与 @Component 相同。
+
+@Service：通常作用在业务层（Service层），用于将业务层的类标识为Spring中的Bean，其功能与 @Component 相同。
+
+@Constroller：通常作用在控制层（如Struts2的Action），用于将控制层的类标识为Spring中的Bean，其功能与 @Component 相同。
+
+@Autowired：用于对Bean的属性变量、属性的Set方法及构造函数进行标注，配合对应的注解处理器完成Bean的自动配置工作。默认按照Bean的类型进行装配。
+
+@Resource：其作用与Autowired一样。其区别在于@Autowired默认按照Bean类型装配，而@Resource默认按照Bean实例名称进行装配。@Resource中有两个重要属性：name和type。Spring将name属性解析为Bean实例名称，type属性解析为Bean实例类型。如果指定name属性，则按实例名称进行装配；如果指定type属性，则按Bean类型进行装配；如果都不指定，则先按Bean实例名称装配，如果不能匹配，再按照Bean类型进行装配；如果都无法匹配，则抛出NoSuchBeanDefinitionException异常。
+
+@Qualifier：与@Autowired注解配合使用，会将默认的按Bean类型装配修改为按Bean的实例名称装配，Bean的实例名称由@Qualifier注解的参数指定。
